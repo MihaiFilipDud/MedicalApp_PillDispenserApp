@@ -49,6 +49,8 @@ public class MedicationCard extends JPanel implements ActionListener {
                         destroy = true;
                     }
                     //card.removeAll();
+                }else{
+                    takeMedBut.setEnabled(true);
                 }
             }
         };

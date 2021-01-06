@@ -21,6 +21,7 @@ public class PillDispenserApplication {
     public HessianProxyFactoryBean hessianInvoker() {
         HessianProxyFactoryBean invoker = new HessianProxyFactoryBean();
         invoker.setServiceUrl("https://mihaifilipdud-backend-sd.herokuapp.com/medPlanTransfer");
+        //invoker.setServiceUrl("http://localhost:8080/medPlanTransfer");
         invoker.setServiceInterface(MedicationPlanTransfer.class);
         return invoker;
     }

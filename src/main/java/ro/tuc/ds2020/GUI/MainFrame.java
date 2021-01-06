@@ -43,6 +43,7 @@ public class MainFrame extends JFrame {
     public void getMedPlans(){
         medPlanTablePane.removeAll();
         planList = medicationPlanTransfer.transferMedPlan(UUID.fromString("ed1b6e0b-130f-46fe-a2a2-c6cc8a87995e"));
+        //planList = medicationPlanTransfer.transferMedPlan(UUID.fromString("895b0d69-1f20-4c1a-8763-a2348ec45af9"));
         String column[]={"Medication Plan"};
 //
         String data[][] = new String[100000][2];
