@@ -29,6 +29,7 @@ public class MainFrame extends JFrame {
     public JPanel medCardsPane;
     public JTable medPlanTable;
     private MedicationPlanTransfer medicationPlanTransfer;
+    static int sel = 0;
 
     @Autowired
     public MainFrame(MedicationPlanTransfer medicationPlanTransfer) {
@@ -38,8 +39,8 @@ public class MainFrame extends JFrame {
     }
 
 
-    //@Scheduled(fixedDelay = 86400000)
-    @Scheduled(fixedDelay = 1000)
+    @Scheduled(fixedDelay = 86400000)
+    //@Scheduled(fixedDelay = 1000)
     public void getMedPlans(){
         medPlanTablePane.removeAll();
         planList = medicationPlanTransfer.transferMedPlan(UUID.fromString("ed1b6e0b-130f-46fe-a2a2-c6cc8a87995e"));
@@ -57,9 +58,11 @@ public class MainFrame extends JFrame {
         medPlanTable.setCellSelectionEnabled(true);
         ListSelectionModel select= medPlanTable.getSelectionModel();
         select.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+
         select.addListSelectionListener(new ListSelectionListener() {
             public void valueChanged(ListSelectionEvent e) {
-
+                sel++;
+                System.out.println(sel);
                 medCardsPane.removeAll();
 
                 String Data = null;
@@ -73,7 +76,7 @@ public class MainFrame extends JFrame {
 
 
                 for(Medication medication:planList.get(i).getMedications()){
-                    medCardsPane.add(new MedicationCard(medication, planList.get(i), medicationPlanTransfer));
+                    medCardsPane.add(new MedicationCard(sel, medication, planList.get(i), medicationPlanTransfer));
                 }
 //
             }

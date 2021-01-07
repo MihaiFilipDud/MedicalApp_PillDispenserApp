@@ -1,6 +1,7 @@
 package ro.tuc.ds2020;
 
 import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import ro.tuc.ds2020.entities.MedicationPlan;
 import ro.tuc.ds2020.hessian_rmi.MedicationPlanTransfer;
 import org.springframework.boot.SpringApplication;
@@ -15,6 +16,7 @@ import java.util.TimeZone;
 import java.util.UUID;
 
 @SpringBootApplication
+//@EnableScheduling
 public class PillDispenserApplication {
 
     @Bean
@@ -36,7 +38,6 @@ public class PillDispenserApplication {
 
     @PostConstruct
     void started() {
-        // set JVM timezone as UTC
         TimeZone.setDefault(TimeZone.getTimeZone("UTC"));
     }
 

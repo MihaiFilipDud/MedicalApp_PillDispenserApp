@@ -21,7 +21,7 @@ public class MedicationCard extends JPanel implements ActionListener {
     public JPanel card = this;
 
 
-    public MedicationCard(Medication medication, MedicationPlan medicationPlan, MedicationPlanTransfer medicationPlanTransfer) {
+    public MedicationCard(int sel, Medication medication, MedicationPlan medicationPlan, MedicationPlanTransfer medicationPlanTransfer) {
         this.curTime = curTime;
         this.medication = medication;
         this.medicationPlan = medicationPlan;
@@ -43,7 +43,7 @@ public class MedicationCard extends JPanel implements ActionListener {
                         curTime.getHours() == medicationPlan.getIntakeIntervalEnd().getHours()  && curTime.getMinutes() == medicationPlan.getIntakeIntervalEnd().getMinutes() && curTime.getSeconds() > medicationPlan.getIntakeIntervalEnd().getSeconds()
 
                         )){
-                    if(!destroy) {
+                    if(!destroy && sel%2==0) {
                         medicationPlanTransfer.medicationStatusResponse(new MedicationStatus(curTime, false, medication));
                         takeMedBut.setEnabled(false);
                         destroy = true;
@@ -78,6 +78,7 @@ public class MedicationCard extends JPanel implements ActionListener {
                 System.out.println(medication.getName()+ " taken");
                 medicationPlanTransfer.medicationStatusResponse(new MedicationStatus(curTime, true, medication));
                 card.removeAll();
+                destroy = true;
 
             }
         });
